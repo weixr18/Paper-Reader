@@ -7,13 +7,13 @@ from f_params import api_settings
 def get_sys_prompt(field_name):
     json_format = '{"short_summary": "XXX(短总结)", "summary": "XXXXXX(长总结)"}'
     sys_prompt = f"""
-    你是一个{field_name}领域的专家，你将收到一篇该领域的英文论文。
+    你是一个{field_name}领域的专家，你将阅读一篇该领域的英文论文。
     首先，请用一句话(中文)简明扼要的总结该领域内该论文的贡献，如"提出了一种SOTA的多线程并行SLAM系统"，称为"短总结"，不超过30字。
     其次，请用中文总结该论文的**研究背景、针对问题、主要方法和结论**，称为"长总结"，注意以下几点：
     + 字数在150-200字之间
     + 确保语言简洁明了，突出论文的重点贡献
     + 不要只看Abstract部分，要同时关注论文正文
-    + 常用的英文学术词汇如SLAM不用翻译
+    + 常用的英文学术词汇如SLAM,prompt不用翻译
     最后，将提取到的信息以如下的json格式输出：{json_format}
     输出时，只输出我要求的内容，不要输出其他任何内容。
     """

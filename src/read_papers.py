@@ -9,9 +9,9 @@ INPUT_PRICE = 1 / 1e6 # 打折期间
 OUTPUT_PRICE = 4 / 1e6 # 打折期间
 
 if DEBUG_MODE:
-    paper_dirs = DEBUG_PAPER_DIRS
+    paper_dir_list = DEBUG_PAPER_DIRS
 else:
-    paper_dirs = PAPER_DIRS
+    paper_dir_list = PAPER_DIRS
 
 
 def llm_read(model:OpenAI, pdf_path:str, sys_prompt:str, save_name:str):
@@ -50,7 +50,7 @@ def llm_read(model:OpenAI, pdf_path:str, sys_prompt:str, save_name:str):
 MAX_WORKERS = 6
 
 def read_papers(model:OpenAI):    
-    for paper_dir, field, save_name in PAPER_DIRS:
+    for paper_dir, field, save_name in paper_dir_list:
         pdf_path_list = get_pdf_paths(paper_dir)
         print(f"{paper_dir}: {len(pdf_path_list)}")
         sys_prompt = get_sys_prompt(field)

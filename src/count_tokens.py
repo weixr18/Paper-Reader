@@ -5,9 +5,9 @@ from f_params import *
 
 DEBUG_MODE = False
 if DEBUG_MODE:
-    paper_dirs = DEBUG_PAPER_DIRS
+    paper_dir_list = DEBUG_PAPER_DIRS
 else:
-    paper_dirs = PAPER_DIRS
+    paper_dir_list = PAPER_DIRS
 
 
 PROVIDER = "aliyun"
@@ -16,7 +16,7 @@ MAX_WORKERS = 6
 
 def count_tokens(tokenizer):
     pdf_path_list = []
-    for paper_dir, _, _ in PAPER_DIRS:
+    for paper_dir, _, _ in paper_dir_list:
         tmp_list = get_pdf_paths(paper_dir)
         print(f"{paper_dir}: {len(tmp_list)}")
         pdf_path_list += tmp_list
