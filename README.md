@@ -27,6 +27,6 @@ DEBUG_PAPER_DIRS = [
 ] # 调试用的配置，可以单独搞一个调试文件夹
 ```
 
-3. 运行`cd src && python3 count_tokens.py`，可以提前了解需要耗费多少token。这里调用的是deepseek官方提供的本地tokenizer，需要使用CPU进行运算，速度较慢。该过程也会将pdf提取出的文本缓存在txt文件中。
-4. 运行`cd src && python3 read_papers.py`，调用LLM进行论文阅读，输出结果以json格式存储在`./output/output_file_name_x.txt`中
-5. 如有其他信息提取需求，修改`src/utils.py`中的`get_sys_prompt`函数的prompt即可。
+3. 运行`cd src && python3 count_tokens.py`，可以提前了解需要耗费多少输入token。这里调用的是deepseek官方提供的本地tokenizer，需要使用CPU进行运算，速度较慢。该过程也会将pdf提取出的文本缓存在txt文件中。输出token无法提前预测，正常情况下应该比论文全文少很多。
+4. 运行`python3 src/read_papers.py`，调用LLM进行论文阅读，输出结果以json格式存储在`./output/output_file_name_x.txt`中
+5. 如有其他信息提取需求，可在`src/prompt.py`中增加自己的prompt，并修改`src/read_papers.py`61行的调用。

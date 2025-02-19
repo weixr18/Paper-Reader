@@ -52,7 +52,7 @@ def llm_read(model:OpenAI, pdf_path:str, sys_prompt:str, save_name:str):
     return 
 
 
-MAX_WORKERS = 32
+MAX_WORKERS = 16
 
 def read_papers(model:OpenAI):    
     for paper_dir, field, save_name in paper_dir_list:
