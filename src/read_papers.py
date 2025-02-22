@@ -53,12 +53,20 @@ def llm_read(model:OpenAI, pdf_path:str, sys_prompt:str, save_name:str):
 
 
 MAX_WORKERS = 16
+MODE = "summary"
 
 def read_papers(model:OpenAI):    
+    print(f"Reading paper, mode: {MODE}.")
     for paper_dir, field, save_name in paper_dir_list:
         pdf_path_list = get_pdf_paths(paper_dir)
         print(f"{paper_dir}: {len(pdf_path_list)}")
-        sys_prompt = get_sys_prompt_extract(field)
+        if MODE == "extract":
+            sys_prompt = get_sys_prompt_extract(field)
+        elif MODE == "summary":
+            sys_prompt = get_sys_prompt_summary(field)
+        else:
+            print(f"Error: Unknown mode: {MODE}")
+            exit(-1)
         if DEBUG_MODE:
             for pdf_path in tqdm(pdf_path_list):
                 llm_read(model, pdf_path, sys_prompt, save_name)

@@ -4,6 +4,8 @@
 
 A tool for batch summarization of research papers using LLM API.
 
+contact: weixr0605@sina.com
+
 ## 使用方法
 
 1. 新建路径 `./output` `./txt`
