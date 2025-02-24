@@ -34,7 +34,7 @@ def count_tokens(tokenizer):
             futures = [executor.submit(process_pdf, pdf_path) for pdf_path in pdf_path_list]
             results = []
             for future in tqdm(as_completed(futures), total=len(futures)):
-                results.append(future.result)
+                results.append(future.result())
             total_tokens = sum(results)
     print(f"Token num: {total_tokens}, price: {total_tokens*input_price:.4f}")
 
