@@ -54,12 +54,12 @@ def get_sys_prompt_extract(field_name):
     3. Use null for empty values (do not use None or nil).
     4. Do not add comments, extra fields, or Markdown syntax.
     Example of Correct Format:
-    {
+    {{
     "first_author": "Michael J. Black",
     "publication_year": 2023,
     "research_objective": "Investigating the impact of neural network architectures on image segmentation accuracy",
     "sample_size": 12540
-    }
+    }}
     Please process the paper content and return only the JSON object that meets the above requirements.    
     """
     return sys_prompt

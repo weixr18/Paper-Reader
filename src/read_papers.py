@@ -6,8 +6,8 @@ from prompt import *
 
 PROVIDER = "aliyun"
 DEBUG_MODE = False
-INPUT_PRICE = 1 / 1e6 # 打折期间
-OUTPUT_PRICE = 4 / 1e6 # 打折期间
+INPUT_PRICE = 2 / 1e6 
+OUTPUT_PRICE = 8 / 1e6
 
 if DEBUG_MODE:
     paper_dir_list = DEBUG_PAPER_DIRS
@@ -75,7 +75,7 @@ def read_papers(model:OpenAI):
                 futures = [executor.submit(llm_read, model, pdf_path, sys_prompt, save_name) for pdf_path in pdf_path_list]
                 results = []
                 for future in tqdm(as_completed(futures), total=len(futures)):
-                    results.append(future.result)
+                    results.append(future.result())
         print(f"Processing done for {paper_dir}.")
     pass
 

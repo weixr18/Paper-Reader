@@ -2,11 +2,10 @@ import os
 from openai import OpenAI
 os.environ["TRANSFORMERS_NO_ADVISORY_WARNINGS"] = "1"
 from transformers import AutoTokenizer
-from f_params import api_settings
+from f_params import api_settings, CACHE_PATH
 
 
 WORK_DIR = os.path.dirname(os.path.abspath(__file__)) + "/.."
-
 
 def get_model_tknz(PROVIDER):
     # model
@@ -37,7 +36,7 @@ def get_pdf_paths(paper_dir):
 def get_pdf_str(pdf_path):
     from pdfminer.high_level import extract_text
     pdf_name = os.path.splitext(os.path.basename(pdf_path))[0]
-    txt_path = f"{WORK_DIR}/txt/{pdf_name}.txt"
+    txt_path = f"{CACHE_PATH}/{pdf_name}.txt"
     if os.path.exists(txt_path):
         with open(txt_path, 'r', encoding='utf-8') as file:
             pdf_str = file.read()

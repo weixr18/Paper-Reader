@@ -14,15 +14,14 @@ def get_sys_prompt_summary(field_name):
     [结论] 说明实验结果和实际价值
     *要求结合正文内容（特别是Method/Experiment章节）
     3. 【格式输出】严格按示例格式生成JSON：
-    {
+    {{
     "short_summary": "提出xxx的xxx系统",
     "long_summary": {
         "研究背景": "xxx领域存在...问题",
         "针对问题": "传统方法无法解决...",
         "主要方法": "通过结合xxx与xxx...",
         "结论": "实验表明..." 
-    }
-    }
+    }}}
     *禁止任何注释/说明文本
     """
     return sys_prompt
@@ -54,12 +53,12 @@ def get_sys_prompt_extract(field_name):
     3. 空值统一用null表示（不使用None/nil）
     4. 禁止添加注释、额外字段或Markdown语法
     示例正确格式：
-    {
+    {{
     "first_author": "Michael J. Black", 
     "publication_year": 2023,
     "research_objective": "探索神经网络架构对图像分割精度的影响机制",
     "sample_size": 12540
-    }
+    }}
     请开始处理论文内容，只需返回符合上述要求的JSON对象。
     """
     return sys_prompt
