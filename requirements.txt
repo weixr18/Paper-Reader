@@ -1,0 +1,6 @@
+openai==1.63.2
+transformers==4.49.0
+tqdm==4.66.4
+pdfminer.six==20231228
+numpy==2.2.2
+pandas==2.2.3

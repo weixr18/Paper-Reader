@@ -1,6 +1,15 @@
+import json
 
 def get_sys_prompt_summary(field_name):
     # 总结
+    output_example = json.dumps({
+    "short_summary": "提出xxx的xxx系统",
+    "long_summary": {
+        "研究背景": "xxx领域存在...问题",
+        "针对问题": "传统方法无法解决...",
+        "主要方法": "通过结合xxx与xxx...",
+        "结论": "实验表明..." 
+    }})
     sys_prompt = f"""
     你是一位{field_name}领域的顶级专家，需要深度解析一篇该领域的英文论文。请按以下步骤处理：
     1. 【短总结】用中文一句话总结论文的核心贡献，要求：
@@ -13,15 +22,7 @@ def get_sys_prompt_summary(field_name):
     [主要方法] 强调创新技术方案（保持SLAM等专业术语原文）
     [结论] 说明实验结果和实际价值
     *要求结合正文内容（特别是Method/Experiment章节）
-    3. 【格式输出】严格按示例格式生成JSON：
-    {{
-    "short_summary": "提出xxx的xxx系统",
-    "long_summary": {
-        "研究背景": "xxx领域存在...问题",
-        "针对问题": "传统方法无法解决...",
-        "主要方法": "通过结合xxx与xxx...",
-        "结论": "实验表明..." 
-    }}}
+    3. 【格式输出】严格按示例格式生成JSON：{output_example}
     *禁止任何注释/说明文本
     """
     return sys_prompt
@@ -30,6 +31,12 @@ def get_sys_prompt_summary(field_name):
 
 def get_sys_prompt_extract(field_name):
     # 信息提取
+    output_example = json.dumps({
+    "first_author": "Michael J. Black", 
+    "publication_year": 2023,
+    "research_objective": "探索神经网络架构对图像分割精度的影响机制",
+    "sample_size": 12540
+    })
     sys_prompt = f"""
     你是一名{field_name}领域的资深研究员，现在需要精准解析一篇英文论文的核心信息。请严格按以下要求执行：
     【信息提取规范】
@@ -52,13 +59,7 @@ def get_sys_prompt_extract(field_name):
     2. 字段顺序固定为：first_author → publication_year → research_objective → sample_size
     3. 空值统一用null表示（不使用None/nil）
     4. 禁止添加注释、额外字段或Markdown语法
-    示例正确格式：
-    {{
-    "first_author": "Michael J. Black", 
-    "publication_year": 2023,
-    "research_objective": "探索神经网络架构对图像分割精度的影响机制",
-    "sample_size": 12540
-    }}
+    示例正确格式：{output_example}
     请开始处理论文内容，只需返回符合上述要求的JSON对象。
     """
     return sys_prompt
